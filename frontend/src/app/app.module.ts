@@ -9,13 +9,23 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { PedidoService } from './services/pedido.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NoopInterceptor } from './http-interceptors/noop-interceptor';
+import { httpInterceptorProviders } from './http-interceptors';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    HttpClientModule,
+  ],
   providers: [
     StatusBar,
     SplashScreen,
+    PedidoService,
+    httpInterceptorProviders,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
