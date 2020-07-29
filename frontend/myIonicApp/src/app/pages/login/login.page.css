@@ -1,0 +1,13 @@
+.mat-form-field {
+    width: 100%;
+}
+
+mat-card {
+    width: 30% !important;
+}
+
+.centralizaDivDoCard {
+  justify-content: center;
+  margin-top: 6%;
+  display: flex;
+}

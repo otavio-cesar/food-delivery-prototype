@@ -13,11 +13,7 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pedidoService.buscaCpf().subscribe(
-      cpf => {
-        console.log(cpf)
-      }, error =>{
-        console.log(error)
-      })
+    
   }
+  
 }

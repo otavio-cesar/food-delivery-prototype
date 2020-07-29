@@ -13,15 +13,22 @@ import { PedidoService } from './services/pedido.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopInterceptor } from './http-interceptors/noop-interceptor';
 import { httpInterceptorProviders } from './http-interceptors';
+import { HomePage } from './home/home.page';
+import { HomePageModule } from './home/home.module';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   entryComponents: [],
   imports: [
     BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     HttpClientModule,
+    HomePageModule
   ],
   providers: [
+    AuthService,
     StatusBar,
     SplashScreen,
     PedidoService,
@@ -30,4 +37,4 @@ import { httpInterceptorProviders } from './http-interceptors';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

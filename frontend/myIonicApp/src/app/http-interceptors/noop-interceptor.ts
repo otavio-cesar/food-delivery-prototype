@@ -1,21 +1,23 @@
 import { finalize, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {
-    HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse
-} from '@angular/common/http';
-
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class NoopInterceptor implements HttpInterceptor {
 
+    constructor(public auth: AuthService) { }
+
     intercept(req: HttpRequest<any>, next: HttpHandler):
         Observable<HttpEvent<any>> {
         let ok: string;
-        
-        console.log('int req')
 
+        // adiciona token na requisição
+        req = req.clone({ setHeaders: { Authorization: `Bearer ${this.auth.getToken()}` } });
+
+        console.log('Doing request...')
         return next.handle(req).pipe(tap(
             // Succeeds when there is a response; ignore other events
             event => ok = event instanceof HttpResponse ? 'succeeded' : '',
@@ -24,7 +26,7 @@ export class NoopInterceptor implements HttpInterceptor {
         ),
             // Log when response observable either completes or errors
             finalize(() => {
-                console.log('int resp')
+                console.log('Server responded.')
             })
         );
     }

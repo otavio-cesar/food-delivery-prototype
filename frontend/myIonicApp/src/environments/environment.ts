@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://rcsnet-001-site26.atempurl.com/api'
+  ApiURL: 'https://localhost:44312/api'
 };
 
 /*
