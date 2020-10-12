@@ -13,8 +13,8 @@ import { PedidoService } from './services/pedido.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopInterceptor } from './http-interceptors/noop-interceptor';
 import { httpInterceptorProviders } from './http-interceptors';
-import { HomePage } from './home/home.page';
-import { HomePageModule } from './home/home.module';
+import { HomePage } from './pages/home/home.page';
+import { HomePageModule } from './pages/home/home.module';
 import { AuthService } from './services/auth.service';
 
 @NgModule({
